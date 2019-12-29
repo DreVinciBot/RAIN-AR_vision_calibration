@@ -1,6 +1,6 @@
 ﻿/*
-© Siemens AG, 2017-2019
-Author: Berkay Alp Cakal (berkay_alp.cakal.ct@siemens.com)
+© Siemens AG, 2017-2018
+Author: Dr. Martin Bischoff (martin.bischoff@siemens.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,14 +15,16 @@ limitations under the License.
 
 namespace RosSharp.RosBridgeClient
 {
-    public static class HeaderExtensions
+    public static class StandardHeaderExtensions
     {
-        private static Timer timer = new Timer();
-
-        public static void Update(this MessageTypes.Std.Header header)
+        public static void Update(this StandardHeader standardHeader)
         {
-            header.seq++;
-            header.stamp = timer.Now();
+            float time = UnityEngine.Time.realtimeSinceStartup;
+            int secs = (int)time;
+            int nsecs = (int)(1000 *(time-secs));
+            standardHeader.seq++;
+            standardHeader.stamp.secs = secs;
+            standardHeader.stamp.nsecs = nsecs;
         }
     }
 }
