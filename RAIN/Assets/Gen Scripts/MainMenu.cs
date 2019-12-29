@@ -21,4 +21,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("AR_scene");
     }
 
+    public void MainMenu_scene()
+    {
+        SceneManager.LoadScene("MainMenu_scene");
+    }
 }
