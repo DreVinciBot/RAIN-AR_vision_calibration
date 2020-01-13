@@ -34,7 +34,7 @@ public class StatusManager : MonoBehaviour
     {
         //checkTracker();
         //controlExtendedTracking();
-        implementPreferences();
+        //implementPreferences();
 	}
 
     void displayStatus (string message)
@@ -56,7 +56,7 @@ public class StatusManager : MonoBehaviour
             displayStatus("Target Image Not Found");
         }
     }
-    */
+    
 
     void implementPreferences()
     {
@@ -70,11 +70,12 @@ public class StatusManager : MonoBehaviour
         {
             PointCloud.SetActive(false);
             //rosSubscriber("/ARFUROS/PointCloud2", false);
-            rosSubscriber("/ARFUROS/3DPointArray", false);
+            //rosSubscriber("/ARFUROS/3DPointArray", false);
         }
 
     }
 
+    */
     void rosSubscriber(string topic, bool status)
     {
           for (int i = 0; i < scripts.Length; i++)
