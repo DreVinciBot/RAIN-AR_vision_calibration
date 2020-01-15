@@ -17,7 +17,7 @@ public class StatusManager : MonoBehaviour
     public GameObject PointCloud;
     private Subscriber[] scripts;
 
-	// Use this for initialization
+
 	void Awake ()
     {
         statusText.text = "Initializing...";

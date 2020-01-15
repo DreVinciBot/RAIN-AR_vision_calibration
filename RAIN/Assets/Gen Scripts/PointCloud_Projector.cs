@@ -32,7 +32,7 @@ public class PointCloud_Projector : MonoBehaviour
             // Initialize variables 
             seq = message.seq;
             numParticles = message.numPoints;
-            tcount.text = "Total Points: " + numParticles.ToString() + " Seq: " + seq.ToString();
+            //tcount.text = "Total Points: " + numParticles.ToString() + " Seq: " + seq.ToString();
             particles = new ParticleSystem.Particle[numParticles];
 
             // Spawn 

@@ -11,37 +11,38 @@ namespace RosSharp.RosBridgeClient
         public override Type MessageType { get { return (typeof(GeometryPoseArray)); } }
         private GeometryPoseArray rawMessage;
 
-        public Text particleCount;
+        public Text messageReceived;
+        public Text numParticles;
         public int seq = 0;
 
         public int numPoints;
         public Vector3[] points;
 
         
-        public Animation heart;
-        public Animation fragment;
+        //public Animation heart;
+        //public Animation fragment;
 
         void Start()
         {
-            heart = GetComponent<Animation>();
-            fragment = GetComponent<Animation>();
+            //heart = GetComponent<Animation>();
+            //fragment = GetComponent<Animation>();
 
-            heart.Play();
-            fragment.Play();
+            //heart.Play();
+            //fragment.Play();
         }
 
         
         void Update()
         {
-
             seq = rawMessage.header.seq;
             numPoints = rawMessage.poses.Length;
 
             if (seq != 0)
             {
-                particleCount.text = "PointCloud: Ready!";
-                heart.Stop();
-                fragment.Stop();
+                messageReceived.text = "PointCloud: Ready!";
+                numParticles.text = numPoints.ToString();
+                //heart.Stop();
+                //fragment.Stop();
             }
         }
 
