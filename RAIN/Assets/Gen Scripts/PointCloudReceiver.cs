@@ -8,14 +8,17 @@ namespace RosSharp.RosBridgeClient
 {
     public class PointCloudReceiver : MessageReceiver
     {
-        public override Type MessageType { get { return (typeof(GeometryPoseArray)); } }
-        private GeometryPoseArray rawMessage;
+        //public override Type MessageType { get { return (typeof(GeometryPoseArray)); } }
+        //private GeometryPoseArray rawMessage;
+
+        public override Type MessageType { get { return (typeof(PointArray)); } }
+        private PointArray rawMessage;
 
         public Text messageReceived;
         public Text numParticles;
         public int seq = 0;
-
         public int numPoints;
+
         public Vector3[] points;
 
         
@@ -31,10 +34,10 @@ namespace RosSharp.RosBridgeClient
             //fragment.Play();
         }
 
-        
+        /*
         void Update()
         {
-            seq = rawMessage.header.seq;
+            //seq = rawMessage.header.seq;
             numPoints = rawMessage.poses.Length;
 
             if (seq != 0)
@@ -45,6 +48,7 @@ namespace RosSharp.RosBridgeClient
                 //fragment.Stop();
             }
         }
+        */
 
         private void Awake()
         {
@@ -53,24 +57,36 @@ namespace RosSharp.RosBridgeClient
 
         private void ReceiveMessage(object sender, MessageEventArgs e)
         {
-            rawMessage = (GeometryPoseArray)e.Message;
+            //rawMessage = (GeometryPoseArray)e.Message;
+            rawMessage = (PointArray)e.Message;
             UpdateValues();
         }
 
         private void UpdateValues()
         {
             seq = rawMessage.header.seq;
-            numPoints = rawMessage.poses.Length;
+            //numPoints = rawMessage.poses.Length;
+            numPoints = rawMessage.points.Length;
+
+            if (seq != 0)
+            {
+                messageReceived.text = "PointCloud: Ready!";
+                numParticles.text = numPoints.ToString();
+            }
 
             //particleCount.text = "Particle Received: " + numPoints.ToString();
 
             points = new Vector3[numPoints];
 
-            for (int i = 0; i< numPoints; i++)
+            for (int i = 0; i < numPoints; i++)
             {
-                points[i].x = rawMessage.poses[i].position.x;
-                points[i].y = rawMessage.poses[i].position.y;
-                points[i].z = rawMessage.poses[i].position.z;
+                //points[i].x = rawMessage.poses[i].position.x;
+                //points[i].y = rawMessage.poses[i].position.y;
+                //points[i].z = rawMessage.poses[i].position.z;
+
+                points[i].x = rawMessage.points[i].x;
+                points[i].y = rawMessage.points[i].y;
+                points[i].z = rawMessage.points[i].z;
             }
         }
             /*

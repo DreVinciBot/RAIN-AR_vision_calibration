@@ -26,6 +26,18 @@ namespace RosSharp.RosBridgeClient
         }
     }
 
+    public class PointArray : Message
+    {
+        public StandardHeader header;
+        public GeometryPoint[] points;
+
+        public PointArray()
+        {
+            header = new StandardHeader();
+            points = new GeometryPoint[0];
+        }
+    }
+
     public class BlinkerMsg : Message
     {
         public string path;
