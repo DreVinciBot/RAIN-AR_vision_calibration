@@ -47,7 +47,8 @@ public class PointCloud_Projector : MonoBehaviour
         //set positions
         for (int i = 0; i < numParticles; i++)
         {
-            particles[i].position = new Vector3(message.points[i].x, message.points[i].y, message.points[i].z);
+            //image is inverted along x, multiply by -1 to y-compoment to correct. Pay attention to orientation of gameobject
+            particles[i].position = new Vector3(message.points[i].x, -1.0f * message.points[i].y, message.points[i].z);
             particles[i].startColor = Color.red;
             particles[i].startSize = 0.005f;  
         }
