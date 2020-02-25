@@ -41,7 +41,7 @@ namespace RosSharp.RosBridgeClient
 
         public void btn_rightPressed()
         {
-            current_voxelSize = current_voxelSize + 0.5f;
+            current_voxelSize = current_voxelSize + 0.05f;
             voxelValue.text = current_voxelSize.ToString();
             //Debug.Log("right button pressed");
             Message.x = current_voxelSize;
@@ -52,7 +52,7 @@ namespace RosSharp.RosBridgeClient
 
         public void btn_leftPressed()
         {
-            current_voxelSize = current_voxelSize - 0.5f;
+            current_voxelSize = current_voxelSize - 0.05f;
             voxelValue.text = current_voxelSize.ToString();
             // Debug.Log("left button pressed");
 
