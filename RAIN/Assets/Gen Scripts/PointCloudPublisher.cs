@@ -39,9 +39,9 @@ namespace RosSharp.RosBridgeClient
 
         }
 
-        public void btn_rightPressed()
+        public void btn_leftPressed()
         {
-            current_voxelSize = current_voxelSize + 0.05f;
+            current_voxelSize = current_voxelSize + 0.005f;
             voxelValue.text = current_voxelSize.ToString();
             //Debug.Log("right button pressed");
             Message.x = current_voxelSize;
@@ -50,14 +50,23 @@ namespace RosSharp.RosBridgeClient
 
         }
 
-        public void btn_leftPressed()
+        public void btn_rightPressed()
         {
-            current_voxelSize = current_voxelSize - 0.05f;
-            voxelValue.text = current_voxelSize.ToString();
-            // Debug.Log("left button pressed");
+            if (current_voxelSize < 0)
+            {
+                current_voxelSize = 0;
+            }
 
-            Message.x = current_voxelSize;
-            rosSocket.Publish(publicationId, Message);
+            else
+            {
+                current_voxelSize = current_voxelSize - 0.005f;
+                voxelValue.text = current_voxelSize.ToString();
+                // Debug.Log("left button pressed");
+
+                Message.x = current_voxelSize;
+                rosSocket.Publish(publicationId, Message);
+
+            }
 
         }
 
