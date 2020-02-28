@@ -54,7 +54,7 @@ namespace RosSharp.RosBridgeClient
         {
             if (current_voxelSize < 0)
             {
-                current_voxelSize = 0;
+                current_voxelSize = 0.005f;
             }
 
             else

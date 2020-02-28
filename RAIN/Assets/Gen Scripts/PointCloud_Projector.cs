@@ -7,6 +7,7 @@ using System;
 public class PointCloud_Projector : MonoBehaviour
 {
     public PointCloudReceiver message;
+    public float particle_size;
 
     public Text seq_count;
 
@@ -17,6 +18,12 @@ public class PointCloud_Projector : MonoBehaviour
     private int numParticles;
 
     public int seq;
+
+    public float R;
+    public float B;
+    public float G;
+    public float alpha;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +48,44 @@ public class PointCloud_Projector : MonoBehaviour
         }
     }
 
+    public void EnlargeParticles()
+    {
+        particle_size = particle_size + 0.001f;
+        Display();
+    }
+
+    public void ShrinkParticles()
+    {
+        if (particle_size < 0)
+        {
+            particle_size = 0.001f;
+        }
+        else
+        {
+            particle_size = particle_size - 0.001f;
+            Display();
+        }
+    }
+
+    public void IncreaseAlpha()
+    {
+        alpha = alpha + 0.05f;
+        Display();
+    }
+
+    public void DecreaseAlpha()
+    {
+        if (alpha < 0)
+        {
+            alpha = 0.01f;
+        }
+        else
+        {
+            alpha = alpha - 0.01f;
+            Display();
+        }
+    }
+
     void Display()
     {
         
@@ -49,13 +94,12 @@ public class PointCloud_Projector : MonoBehaviour
         {
             //image is inverted along x, multiply by -1 to y-compoment to correct. Pay attention to orientation of gameobject
             particles[i].position = new Vector3(message.points[i].x, -1.0f * message.points[i].y, message.points[i].z);
-            particles[i].startColor = Color.red;
-            particles[i].startSize = 0.005f;  
+            //particles[i].startColor = Color.red;
+            particles[i].startColor = new Color(R,B,G,alpha);
+
+            particles[i].startSize = particle_size;  
         }
         
-
-        //particles[0].position = new Vector3(0, 0, 0);
-
         mySystem.SetParticles(particles, particles.Length);
 
     }
