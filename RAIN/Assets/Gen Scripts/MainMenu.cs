@@ -26,4 +26,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("MainMenu_scene");
     }
 
+    public void MainMenu_No_Animation_Scene()
+    {
+        SceneManager.LoadScene("MainMenu_No_Animation_scene");
+    }
+
 }

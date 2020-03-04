@@ -13,17 +13,11 @@ namespace RosSharp.RosBridgeClient
     {
         public string Topic;
         public Text voxelValue;
-       // public PointCloudReceiver MessageProvider;
         public RosConnector rosConnector;
 
         private RosSocket rosSocket;
         private string publicationId;
-
-        //private int publicationId;
-
-        //private StandardString Message;
         private GeometryPoint Message;
-     
         private float current_voxelSize;
 
         private void Start()
@@ -35,17 +29,15 @@ namespace RosSharp.RosBridgeClient
             //publicationId = rosSocket.Advertise(Topic, "std_msgs/String");
 
             Message = new GeometryPoint();
-         
-
+     
         }
 
         public void btn_leftPressed()
         {
-            current_voxelSize = current_voxelSize + 0.005f;
+            current_voxelSize = (float)System.Math.Round(current_voxelSize + 0.005f,3);
             voxelValue.text = current_voxelSize.ToString();
-            //Debug.Log("right button pressed");
             Message.x = current_voxelSize;
-            //Message.data = current_voxelSize;
+
             rosSocket.Publish(publicationId, Message);
 
         }
@@ -59,7 +51,7 @@ namespace RosSharp.RosBridgeClient
 
             else
             {
-                current_voxelSize = current_voxelSize - 0.005f;
+                current_voxelSize = (float)System.Math.Round(current_voxelSize - 0.005f,3);
                 voxelValue.text = current_voxelSize.ToString();
                 // Debug.Log("left button pressed");
 

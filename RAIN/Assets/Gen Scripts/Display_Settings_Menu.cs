@@ -9,6 +9,8 @@ public class Display_Settings_Menu : MonoBehaviour
     public RectTransform sideMenu;
     private bool isClicked = false;
     public int display_value = -131;
+    public int target_value = -131;
+    public int left_position = 0;
 
     public void ButtonToggle()
     {
@@ -34,12 +36,12 @@ public class Display_Settings_Menu : MonoBehaviour
 
     public void Side_menu_btn()
     {
-        sideMenu.DOAnchorPos(new Vector2(0, display_value -131), 0.25f);
+        sideMenu.DOAnchorPos(new Vector2(left_position, display_value + target_value), 0.25f);
     }
 
     public void Close_Side_menu_btn()
     {
-        sideMenu.DOAnchorPos(new Vector2(0, display_value), 0.25f);
+        sideMenu.DOAnchorPos(new Vector2(left_position, display_value), 0.25f);
     }
 
 }
