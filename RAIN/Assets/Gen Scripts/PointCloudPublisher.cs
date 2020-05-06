@@ -18,6 +18,7 @@ namespace RosSharp.RosBridgeClient
         public RosConnector rosConnector;
 
         private RosSocket rosSocket;
+        private string publicationId2;
         private string publicationId;
         private GeometryPoint Message;
         private float current_voxelSize;
@@ -30,8 +31,8 @@ namespace RosSharp.RosBridgeClient
 
             rosSocket = rosConnector.RosSocket;
             //publicationId = rosSocket.Advertise(Topic, MessageTypes.RosMessageType(MessageProvider.MessageType));
-            publicationId = rosSocket.Advertise(Topic2, "geometry_msgs/Point");
-            //publicationId = rosSocket.Advertise(Topic, "std_msgs/String");
+            publicationId2 = rosSocket.Advertise(Topic2, "geometry_msgs/Point");
+            publicationId = rosSocket.Advertise(Topic, "std_msgs/String");
 
             Message = new GeometryPoint();
      
@@ -73,7 +74,7 @@ namespace RosSharp.RosBridgeClient
             radiusValue.text = current_radiusLimit.ToString();
             Message.x = current_radiusLimit;
 
-            rosSocket.Publish(publicationId, Message);
+            rosSocket.Publish(publicationId2, Message);
 
         }
 
@@ -91,7 +92,7 @@ namespace RosSharp.RosBridgeClient
                 // Debug.Log("left button pressed");
 
                 Message.x = current_radiusLimit;
-                rosSocket.Publish(publicationId, Message);
+                rosSocket.Publish(publicationId2, Message);
 
             }
 

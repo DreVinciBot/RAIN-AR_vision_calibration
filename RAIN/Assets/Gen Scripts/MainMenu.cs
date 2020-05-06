@@ -16,9 +16,14 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void AR_scene()
+    public void PointArray_Raw_scene()
     {
-        SceneManager.LoadScene("AR_scene");
+        SceneManager.LoadScene("PointArray_Raw");
+    }
+
+    public void PointArray_Cylinder_scene()
+    {
+        SceneManager.LoadScene("PointArray_Cylinder");
     }
 
     public void MainMenu_scene()
